@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.os.Vibrator;
 
 import java.time.LocalDateTime;
 import java.util.Timer;
@@ -38,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
         if(lolDt.getHour() > 9 && lolDt.getHour() < 18 )
         {
             int iminute = lolDt.getMinute();
-            if (iminute == 0 /*|| iminute == 30 */) {
-
+            if (iminute == 0/* || iminute == 30 || iminute == 33 */) {
+                Vibrator v = (Vibrator) getSystemService(this.VIBRATOR_SERVICE);
                 for ( int i =0;i <5 ;i++) {
                     MediaPlayer ring = MediaPlayer.create(MainActivity.this, R.raw.beep01a);
                     ring.start();
+                    v.vibrate(500);
                     try{Thread.sleep(2000);}catch(InterruptedException e){System.out.println(e);}
                 }
                 long sleepTime = 60000;
